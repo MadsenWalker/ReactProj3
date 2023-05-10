@@ -1,5 +1,5 @@
 // import axios from "axios";
-// import { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import DetailScreen from "./components/detailComponents/DetailScreen";
