@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import AdBanner from "./AdBanner";
-// import RecipeContainer from "./RecipeContainer";
+import RecipeContainer from "./RecipeContainer";
 import axios from "axios";
 
 const HomeScreen = () => {
   const [recipes, setRecipes] = useState([]);
-  const url = "https://recipes.devmountain.com";
+  const url = 'https://recipes.devmountain.com';
 
   const getRecipes = () => {
     axios.get(`${url}/recipes`).then((res) => {
@@ -21,7 +21,7 @@ const HomeScreen = () => {
   return (
     <div>
       <AdBanner />
-      {/* <RecipeContainer recipes={recipes} /> */}
+      <RecipeContainer recipes={recipes} />
     </div>
   );
 };
