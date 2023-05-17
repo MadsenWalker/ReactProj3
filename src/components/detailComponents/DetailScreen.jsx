@@ -1,10 +1,23 @@
-import React from 'react'
-// import { useParams } from "react-router-dom";
+import React, {useEffect, useState } from 'react'
+import { useParams } from "react-router-dom";
 // import DetailImage from "./DetailImage";
-// import axios from "axios";
+import axios from "axios";
 import styles from "./DetailScreen.module.css";
 
 const DetailScreen = () => {  
+
+const { id } = useParams();
+
+const [recipe, setRecipe] = useState({});
+const url = "https://recipes.devmountain.com";
+console.log(recipe);
+
+useEffect(() => {
+  axios.get(`https://recipes.devmountain.com/recipes/${id}`).then((res) => {
+    setRecipe(res.data);
+  });
+}, []);
+
   return (
     <section>
       Welcome to the details page! This page will be reusable. Follow
@@ -26,11 +39,20 @@ const DetailScreen = () => {
           <h4>Cook Time:</h4>
           <h4>Serves:</h4>
           <h2>Ingredients</h2>
+
+          {recipe.ingredients &&
+            recipe.ingredients.map((ing, index) => {
+              return (
+                <h4>
+                  {ing.quantity} {ing.ingredient}
+                </h4>
+              );
+            })}
         </div>
         <div className={styles.instruction_container}>
           <h2>Instructions</h2>
-          <p>
-            This is how you cook this recipe.
+          <p style={{ whiteSpace: "pre-wrap" }}>
+            {recipe.instructions && JSON.parse(recipe.instructions)}
           </p>
         </div>
       </div>
